@@ -65,7 +65,7 @@ int main()
           steer_value = pid.TotalError()*speed_steering_correction/speed;
 
           speed_pid.UpdateError(abs(cte));
-          double maximum_speed = 1; //Percentage of maximum throttle that is available to the controller. Reducing this makes the car drive slower
+          double maximum_speed = 0.7; //Percentage of maximum throttle that is available to the controller. Reducing this makes the car drive slower
           double throttle = maximum_speed-speed_pid.TotalError();
 
           // DEBUG
