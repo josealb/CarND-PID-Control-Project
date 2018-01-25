@@ -61,12 +61,21 @@ int main()
           */
 
           pid.UpdateError(cte);
-          double speed_steering_correction = 70;
-          steer_value = pid.TotalError()*speed_steering_correction/speed;
+          double speed_steering_correction = 40;
+          if (speed>40){ //Reduce correction magnitude at high speed
+            steer_value = pid.TotalError()*speed_steering_correction/speed;
+          }
+          else{
+            steer_value = pid.TotalError();
+          }
+
 
           speed_pid.UpdateError(abs(cte));
           double maximum_speed = 0.7; //Percentage of maximum throttle that is available to the controller. Reducing this makes the car drive slower
           double throttle = maximum_speed-speed_pid.TotalError();
+          if (throttle < 0.1){
+            throttle = 0.1;
+          }
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
