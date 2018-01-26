@@ -19,6 +19,13 @@ The method was the following:
 
 For the speed PID, oscillations were not so problematic so I just used the Kp parameter. The value is such pre-calculated such that the car will start breaking before leaving the track width
 
+## Effect of different components
+
+The proportional P component raises or lowers the frequency of the oscillations. This is as expected
+The integral I component, seems to me, made the car more cented in the lane. This is not what I expected because I did not think the simulated car had a bias, so maybe it was just my perception.
+It also seems to me that when I introduced the i component, the car was more centered in the lane during the curves, where the other two parameters were not able to center the car
+The derivative D component stopped the vehicle from oscillating.
+
 ## Results
 
 The results can be found on this video: https://www.youtube.com/watch?v=B3K3s_2b3T4
