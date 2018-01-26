@@ -61,14 +61,14 @@ int main()
           */
 
           pid.UpdateError(cte);
-          double speed_steering_correction = 40;
-          if (speed>40){ //Reduce correction magnitude at high speed
-            steer_value = pid.TotalError()*speed_steering_correction/speed;
-          }
-          else{
-            steer_value = pid.TotalError();
-          }
-
+          //double speed_steering_correction = 40;
+          //if (speed>40){ //Reduce correction magnitude at high speed
+          //  steer_value = pid.TotalError()*speed_steering_correction/speed;
+          //}
+          //else{
+          //  steer_value = pid.TotalError();
+          //}
+          steer_value = pid.TotalError();
 
           speed_pid.UpdateError(abs(cte));
           double maximum_speed = 0.7; //Percentage of maximum throttle that is available to the controller. Reducing this makes the car drive slower
