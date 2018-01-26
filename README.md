@@ -19,12 +19,19 @@ The method was the following:
 
 For the speed PID, oscillations were not so problematic so I just used the Kp parameter. The value is such pre-calculated such that the car will start breaking before leaving the track width
 
-## Effect of different components
-
-The proportional P component raises or lowers the frequency of the oscillations. This is as expected
-The integral I component, seems to me, made the car more cented in the lane. This is not what I expected because I did not think the simulated car had a bias, so maybe it was just my perception.
+## Explanation of a PID controller
+A PID controller consists of 3 components. The Proportional P component, the integral I component and the derivate D component.
+The proportional component tells the robot how much to correct, in this case steer, for a particular error level. The higher the value, the stronger the correction.
+A controller with only a proportional component will always oscillate, because it will not take into account how the error is evolving, only the inmediate error.
+The value of the proportional P component raises or lowers the frequency of the oscillations.
+The derivate D component, when tuned correctly elliminates the oscillation, generating a critically dampened system.
+This is achieved by reducing the correction once the error starts to descend. 
+In the simulator, the derivative D component stopped the vehicle from oscillating.
+The last part of the PID, the integral component helps in situations when there is a constant drift from the desired position. For example if some of the actuators does not exactly have the expected output.
+The integral part sums the error over time, so the controller will minimize constant errors. It's can also make up for a too low P value, since the error will start to accumulate, and the integral term will start to rise the correction. However, it is likely a better idea to adjust P correctly.
+The integral I component, seems to me, made the car more centered in the lane. This is not what I expected because I did not think the simulated car had a bias, so maybe it was just my perception.
 It also seems to me that when I introduced the i component, the car was more centered in the lane during the curves, where the other two parameters were not able to center the car
-The derivative D component stopped the vehicle from oscillating.
+
 
 ## Results
 
